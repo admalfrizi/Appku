@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityBottomNavBinding
 import com.aplikasi.mvvmloginretrofit.ui.auth.LoginScreen
-import com.aplikasi.mvvmloginretrofit.ui.screen.home.MainActivity
+import com.aplikasi.mvvmloginretrofit.ui.screen.chat.ChatScreen
+import com.aplikasi.mvvmloginretrofit.ui.screen.find.FindScreen
+import com.aplikasi.mvvmloginretrofit.ui.screen.home.HomeScreen
+import com.aplikasi.mvvmloginretrofit.ui.screen.profile.ProfileScreen
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -25,7 +28,7 @@ class BottomNav : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBottomNavBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setFragment(MainActivity())
+        setFragment(HomeScreen())
         sessionManager = SessionManager(this)
 
         navSetup()
@@ -48,19 +51,19 @@ class BottomNav : AppCompatActivity() {
             bottomNavigationView.setOnItemSelectedListener { menu ->
                 when(menu.itemId) {
                     R.id.home -> {
-                        setFragment(MainActivity())
+                        setFragment(HomeScreen())
                         true
                     }
                     R.id.find -> {
-                        setFragment(MainActivity())
+                        setFragment(FindScreen())
                         true
                     }
                     R.id.chat -> {
-                        setFragment(MainActivity())
+                        setFragment(ChatScreen())
                         true
                     }
                     R.id.settings -> {
-                        setFragment(MainActivity())
+                        setFragment(ProfileScreen())
                         true
                     }
                     else -> false

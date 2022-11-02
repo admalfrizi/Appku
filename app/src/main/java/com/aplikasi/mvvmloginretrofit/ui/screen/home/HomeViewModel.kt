@@ -8,14 +8,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     val repo : UserRepository
-): ViewModel() {
-
+) : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"
     }
 
     val text: LiveData<String> = _text
-
 }
