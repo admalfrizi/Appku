@@ -7,9 +7,9 @@ import com.aplikasi.tokenloginretrofit.response.user.User
 import com.google.gson.Gson
 
 
-class SessionManager(context: Context) {
+class SessionManager(context: Context?) {
 
-    private val preferences: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
+    private val preferences: SharedPreferences = context!!.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
 
     companion object {
         const val TOKEN = "token"

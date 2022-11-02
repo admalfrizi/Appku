@@ -20,4 +20,9 @@
     <string name="pw_cf">Konfirmasi Password</string>
     <string name="konfirmasi_password_anda">Konfirmasi Password Anda</string>
     <string name="udah_punya_akun_ya">Udah Punya Akun ?</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="find">Find</string>
+    <string name="chat">Chat</string>
+    <string name="settings">Settings</string>
 </resources>

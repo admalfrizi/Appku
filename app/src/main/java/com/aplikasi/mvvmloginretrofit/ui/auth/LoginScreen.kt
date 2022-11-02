@@ -7,11 +7,9 @@ import androidx.activity.viewModels
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityLoginScreenBinding
-import com.aplikasi.mvvmloginretrofit.repository.UserRepository
-import com.aplikasi.mvvmloginretrofit.ui.home.MainActivity
+import com.aplikasi.mvvmloginretrofit.ui.screen.home.MainActivity
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.tokenloginretrofit.request.LoginRequest
 import dagger.hilt.android.AndroidEntryPoint

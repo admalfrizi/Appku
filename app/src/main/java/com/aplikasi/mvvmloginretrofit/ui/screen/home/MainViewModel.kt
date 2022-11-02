@@ -1,4 +1,4 @@
-package com.aplikasi.mvvmloginretrofit.ui.home
+package com.aplikasi.mvvmloginretrofit.ui.screen.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

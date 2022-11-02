@@ -14,4 +14,6 @@
     <color name="text">#27D2D2</color>
     <color name="third">#374A6F</color>
     <color name="hints">#7D8CA9</color>
+    <color name="unselected">#86C6F4</color>
+    <color name="selected">#679E98</color>
 </resources>

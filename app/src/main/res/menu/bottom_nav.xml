@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:enabled="true"
+        android:icon="@drawable/home_selector"/>
+
+    <item
+        android:id="@+id/find"
+        android:title="@string/find"
+        android:icon="@drawable/find_selector"/>
+
+    <item
+        android:id="@+id/chat"
+        android:title="@string/chat"
+        android:icon="@drawable/chat_selector"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
+        android:icon="@drawable/settings_selector"/>
+</menu>

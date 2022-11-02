@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/drawable/find_selector.xml" value="0.1" />
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/drawable/home_selector.xml" value="0.107" />
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/drawable/settings_selector.xml" value="0.1" />
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/layout/activity_bottom_nav.xml" value="0.536" />
         <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/layout/activity_login_screen.xml" value="0.11041666666666666" />
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/layout/activity_register_screen.xml" value="0.25" />
+        <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/Appku/app/src/main/res/menu/bottom_nav.xml" value="0.264" />
         <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/MVVMLoginRetrofit/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/MVVMLoginRetrofit/app/src/main/res/drawable/ed_txt.xml" value="0.107" />
         <entry key="..\:/Projects/AndroidStudioProject/Coba - Coba/MVVMLoginRetrofit/app/src/main/res/layout/activity_login_screen.xml" value="0.2" />
