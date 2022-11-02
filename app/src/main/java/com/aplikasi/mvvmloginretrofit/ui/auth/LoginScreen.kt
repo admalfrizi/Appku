@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityLoginScreenBinding
-import com.aplikasi.mvvmloginretrofit.ui.screen.home.MainActivity
+import com.aplikasi.mvvmloginretrofit.ui.navbottom.BottomNav
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.tokenloginretrofit.request.LoginRequest
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +31,7 @@ class LoginScreen() : AppCompatActivity() {
 
 
         if(sessionManager.getStatusLogin()){
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, BottomNav::class.java))
         }
         else {
             _binding.loginBtn.setOnClickListener {
@@ -59,7 +59,7 @@ class LoginScreen() : AppCompatActivity() {
                         it.message,
                         Toast.LENGTH_LONG
                     ).show()
-                    Intent(applicationContext, MainActivity::class.java).also {
+                    Intent(applicationContext, BottomNav::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
                     }

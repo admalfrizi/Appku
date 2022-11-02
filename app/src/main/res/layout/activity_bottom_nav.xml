@@ -10,6 +10,7 @@
 
     <FrameLayout
         android:id="@+id/view_layout"
+        android:background="@color/white"
         android:layout_weight="0.9"
         android:layout_width="match_parent"
         android:layout_height="0dp">
@@ -22,6 +23,8 @@
         android:layout_height="59dp"
         android:background="#CAF0F2"
         app:itemTextColor="@color/selector"
+        app:itemTextAppearanceActive="@style/textActive"
+        app:itemTextAppearanceInactive="@style/textInActive"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav"
         />

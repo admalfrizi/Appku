@@ -1,9 +1,11 @@
 package com.aplikasi.mvvmloginretrofit.di
 
 import android.content.Context
+import com.aplikasi.mvvmloginretrofit.api.RemoteDataSource
 import com.aplikasi.mvvmloginretrofit.util.Constants
 import com.aplikasi.mvvmloginretrofit.api.RequestInterceptor
 import com.aplikasi.mvvmloginretrofit.api.RoutesApi
+import com.aplikasi.mvvmloginretrofit.repository.UserRepository
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -67,6 +69,15 @@ object NetworkModule {
             .create(RoutesApi::class.java)
     }
 
+    @Provides
+    fun provideRemoteData(routesApi: RoutesApi) : RemoteDataSource{
+        return RemoteDataSource(routesApi)
+    }
 
+
+    @Provides
+    fun provideUserRepo(remoteDataSource: RemoteDataSource) :UserRepository{
+        return UserRepository(remoteDataSource)
+    }
 
 }

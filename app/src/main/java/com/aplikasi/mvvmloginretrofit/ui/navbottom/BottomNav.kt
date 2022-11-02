@@ -42,12 +42,15 @@ class BottomNav : AppCompatActivity() {
 
     private fun navSetup() {
         bottomNavigationView = binding.navBtm
+        bottomNavigationView.itemIconTintList = null
         menu = bottomNavigationView.menu
         menuItem = menu.getItem(0)
         menuItem.isChecked = true
 
 
-        if(sessionManager.getStatusLogin()) {
+        if(!sessionManager.getStatusLogin()) {
+            startActivity(Intent(this, LoginScreen::class.java))
+        } else {
             bottomNavigationView.setOnItemSelectedListener { menu ->
                 when(menu.itemId) {
                     R.id.home -> {
@@ -66,11 +69,10 @@ class BottomNav : AppCompatActivity() {
                         setFragment(ProfileScreen())
                         true
                     }
+
                     else -> false
                 }
             }
-        } else {
-            Intent(this, LoginScreen::class.java)
         }
 
     }
