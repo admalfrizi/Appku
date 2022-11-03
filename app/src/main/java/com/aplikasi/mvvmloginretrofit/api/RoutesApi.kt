@@ -1,14 +1,13 @@
 package com.aplikasi.mvvmloginretrofit.api
 
+import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.Constants
 import com.aplikasi.tokenloginretrofit.request.LoginRequest
 import com.aplikasi.tokenloginretrofit.request.RegisterRequest
+import com.aplikasi.tokenloginretrofit.response.user.User
 import com.aplikasi.tokenloginretrofit.response.user.UserResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RoutesApi {
 
@@ -18,5 +17,11 @@ interface RoutesApi {
 
     @POST(Constants.REGISTER_URL)
     suspend fun register(@Body regRequest: RegisterRequest
+    ): Response<UserResponse>
+
+    @PUT("")
+    suspend fun updateData(
+        @Path("id") int: Int,
+        @Body updateReq : UpdateDataRequest
     ): Response<UserResponse>
 }

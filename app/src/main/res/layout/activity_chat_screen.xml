@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:textAlignment="center"
         android:text="Chat"
+        android:textColor="@color/black"
         android:layout_gravity="center_horizontal"/>
 
 </FrameLayout>

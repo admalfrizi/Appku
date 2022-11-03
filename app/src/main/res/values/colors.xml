@@ -16,4 +16,5 @@
     <color name="hints">#7D8CA9</color>
     <color name="unselected">#86C6F4</color>
     <color name="selected">#679E98</color>
+    <color name="negative">#CF0A0A</color>
 </resources>

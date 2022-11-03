@@ -1,8 +1,10 @@
 package com.aplikasi.mvvmloginretrofit.repository
 
+import android.util.Log
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.api.NetworkResult
 import com.aplikasi.mvvmloginretrofit.api.RemoteDataSource
+import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.tokenloginretrofit.request.LoginRequest
 import com.aplikasi.tokenloginretrofit.request.RegisterRequest
 import dagger.Module
@@ -31,12 +33,14 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
                     }
 
                     emit(NetworkResult.success(user))
+                    Log.d("TAG", "Berhasil : $body")
                 } else  {
-                    emit(NetworkResult.error(it.errorBody().toString(), null))
+                    emit(NetworkResult.error(it.message(), null))
                 }
             }
         } catch (e: Exception){
-            emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan",null))
+            emit(NetworkResult.error("Terjadi Kesalahan : " + e.message,null))
+            Log.d("TAG", "Error : " + e.message)
         }
     }
 
@@ -59,6 +63,21 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
             }
         } catch (e: Exception) {
             emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan",null))
+        }
+    }
+
+    fun updateData(body: UpdateDataRequest) = flow {
+        emit(NetworkResult.loading(null))
+        try {
+            remoteDataSource.updateData(body).let {
+                if(it.isSuccessful){
+                    val body = it.body()
+                    val user = body?.data
+
+                }
+            }
+        } catch (e: Exception) {
+
         }
     }
 }

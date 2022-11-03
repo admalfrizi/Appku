@@ -1,12 +1,18 @@
 package com.aplikasi.mvvmloginretrofit.ui.screen.profile
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityProfileBinding
 import com.aplikasi.mvvmloginretrofit.ui.auth.LoginScreen
@@ -34,11 +40,32 @@ class ProfileScreen : Fragment() {
 
     private fun logoutButton() {
         _binding?.btnLogout!!.setOnClickListener {
+            dialogLogout()
+
+        }
+    }
+
+    private fun dialogLogout() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.custom_popup_window)
+
+        val btnClose = dialog.findViewById<Button>(R.id.btnCancel)
+        val btnLogout = dialog.findViewById<Button>(R.id.btnLogout)
+
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnLogout.setOnClickListener {
             sessionManager.deleteToken()
             sessionManager.setSession(false)
             val intent = Intent(context, LoginScreen::class.java)
             startActivity(intent)
         }
+
+        dialog.show()
     }
 
     override fun onResume() {

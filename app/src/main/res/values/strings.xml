@@ -25,4 +25,8 @@
     <string name="find">Find</string>
     <string name="chat">Chat</string>
     <string name="settings">Settings</string>
+    <string name="warning_logout">Anda Yakin mau Keluar dari Akunmu ?</string>
+    <string name="cancel">Cancel</string>
+    <string name="gambar_profile">gambar_profile</string>
+    <string name="ganti_data_profile">Ganti Data Profile</string>
 </resources>
