@@ -10,6 +10,7 @@ import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityUpdateDataBinding
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
+import com.aplikasi.mvvmloginretrofit.util.int
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
@@ -99,6 +100,3 @@ class UpdateData : AppCompatActivity() {
     }
 }
 
-private fun Int?.int(): Int {
-    return this ?: 0
-}
