@@ -16,6 +16,7 @@ import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityProfileBinding
 import com.aplikasi.mvvmloginretrofit.ui.auth.LoginScreen
+import com.aplikasi.mvvmloginretrofit.ui.updatedata.UpdateData
 
 class ProfileScreen : Fragment() {
 
@@ -34,14 +35,22 @@ class ProfileScreen : Fragment() {
 
         onResume()
         logoutButton()
+        updateBtn()
+        setLoginStatus()
 
         return view
+    }
+
+    private fun updateBtn() {
+        _binding?.btnUpdate!!.setOnClickListener {
+            val intent = Intent(context, UpdateData::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun logoutButton() {
         _binding?.btnLogout!!.setOnClickListener {
             dialogLogout()
-
         }
     }
 
@@ -63,6 +72,7 @@ class ProfileScreen : Fragment() {
             sessionManager.setSession(false)
             val intent = Intent(context, LoginScreen::class.java)
             startActivity(intent)
+
         }
 
         dialog.show()
@@ -70,7 +80,6 @@ class ProfileScreen : Fragment() {
 
     override fun onResume() {
         setUser()
-        setLoginStatus()
         super.onResume()
     }
 

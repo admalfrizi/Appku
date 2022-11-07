@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"

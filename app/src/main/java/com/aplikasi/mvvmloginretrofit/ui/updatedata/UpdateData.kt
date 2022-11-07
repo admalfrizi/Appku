@@ -2,16 +2,21 @@ package com.aplikasi.mvvmloginretrofit.ui.updatedata
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityUpdateDataBinding
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
+@AndroidEntryPoint
 class UpdateData : AppCompatActivity() {
 
-    private val updateViewModel: UpdataViewModel by viewModels()
+    private val updateViewModel: UpdateViewModel by viewModels()
     private var _binding : ActivityUpdateDataBinding? = null
     private val binding get() = _binding!!
     private var imageProfile : File? = null
@@ -27,46 +32,17 @@ class UpdateData : AppCompatActivity() {
 
     private fun setBtn() {
         binding.btnChange.setOnClickListener {
-            if(imageProfile == null) {
-                updateData()
-            }
+            updateData()
+        }
+
+        binding.btnBack.setOnClickListener{
+            super.onBackPressed()
         }
 
         binding.imageProfile.setOnClickListener {
 
         }
     }
-
-    private fun updateData() {
-        if(binding.userEdt.text.toString().isEmpty()) return
-        if(binding.emailEdt.text.toString().isEmpty()) return
-
-        val userId = SessionManager(this).getUser()?.id
-        val body = userId?.let {
-                UpdateDataRequest(
-                    id = it,
-                    name = binding.userEdt.text.toString(),
-                    email = binding.emailEdt.text.toString()
-                )
-            }
-
-        if (body != null) {
-            updateViewModel.updateData(body).observe(this) {
-                when(it.state) {
-                    State.SUCCESS -> {
-
-                    }
-                    State.ERROR ->{
-
-                    }
-                    State.LOADING -> {
-
-                    }
-                }
-            }
-        }
-    }
-
     private fun setProfileData() {
         val user = SessionManager(this).getUser()
         if(user != null) {
@@ -75,5 +51,50 @@ class UpdateData : AppCompatActivity() {
                 emailEdt.setText(user.email)
             }
         }
+    }
+
+    private fun updateData() {
+        if(binding.userEdt.text.toString().isEmpty()) return
+        if(binding.emailEdt.text.toString().isEmpty()) return
+
+        val sessionManager = SessionManager(this)
+        val userId = sessionManager.getUser()
+        val body = UpdateDataRequest(
+            userId?.id!!,
+            binding.userEdt.text.toString(),
+            binding.emailEdt.text.toString()
+        )
+
+        updateViewModel.updateData(body, sessionManager).observe(this) {
+            when(it.state) {
+                State.SUCCESS -> {
+                    Toast.makeText(
+                        applicationContext,
+                        it.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    onBackPressed()
+                }
+                State.ERROR ->{
+                    _binding?.ld!!.visibility = View.GONE
+                    Toast.makeText(
+                        applicationContext,
+                        "error : " + it.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.d("TAG", "Error : " + it.message)
+                }
+                State.LOADING -> {
+                    _binding?.ld!!.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

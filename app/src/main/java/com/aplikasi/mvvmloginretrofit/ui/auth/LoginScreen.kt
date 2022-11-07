@@ -52,7 +52,7 @@ class LoginScreen() : AppCompatActivity() {
         val body = LoginRequest(_binding.emailEdt.text.toString(), _binding.pwEdt.text.toString())
 
         loginviewModel.login(body, sessionManager).observe(this) {
-            when (it.state) {
+            when (it!!.state) {
                 State.SUCCESS -> {
                     Toast.makeText(
                         applicationContext,
@@ -62,13 +62,14 @@ class LoginScreen() : AppCompatActivity() {
                     Intent(applicationContext, BottomNav::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
+                        finish()
                     }
                 }
                 State.ERROR -> {
                     _binding.ld.visibility = View.GONE
                     Toast.makeText(
                         applicationContext,
-                        "error : " + it.message,
+                        it.message,
                         Toast.LENGTH_LONG
                     ).show()
                     Log.d("TAG", "Error : " + it.message)

@@ -50,6 +50,7 @@ class BottomNav : AppCompatActivity() {
 
         if(!sessionManager.getStatusLogin()) {
             startActivity(Intent(this, LoginScreen::class.java))
+            finish()
         } else {
             bottomNavigationView.setOnItemSelectedListener { menu ->
                 when(menu.itemId) {
