@@ -12,8 +12,12 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import okhttp3.Dispatcher
 import javax.inject.Inject
 import kotlin.coroutines.coroutineContext
 
@@ -23,27 +27,20 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
     fun login(body : LoginRequest, isLogin: SessionManager) = flow {
         emit(NetworkResult.loading(null))
-        try{
-            remoteDataSource.login(body).let {
-                if (it.isSuccessful){
-                    val body = it.body()
-                    val user = body?.data
-                    isLogin.setSession(true)
-                    isLogin.saveToken(body?.data!!.accessToken)
-                    if (user != null) {
-                        isLogin.setUser(user.User)
-                    }
-                    emit(NetworkResult.success(user))
-                    Log.d("TAG", "Berhasil : $body")
-                } else  {
-                    emit(NetworkResult.error(it.message(), null))
-                }
+        remoteDataSource.login(body).let {
+            if (it.isSuccessful){
+                val body = it.body()
+                val user = body?.data
+                isLogin.setSession(true)
+                isLogin.saveToken(body?.data!!.accessToken)
+                isLogin.setUser(user!!.User)
+                emit(NetworkResult.success(user))
+                Log.d("TAG", "Berhasil : $body")
+            } else  {
+                emit(NetworkResult.error(it.message(), null))
             }
-        } catch (e: Exception){
-            Log.d("TAG", "Error Server : " + e.message)
-            emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null))
         }
-    }
+    }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(IO)
 
     fun register(body: RegisterRequest, isReg: SessionManager) = flow {
         emit(NetworkResult.loading(null))
@@ -70,26 +67,20 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
     fun updateData(body: UpdateDataRequest, sessionManager: SessionManager) = flow {
         emit(NetworkResult.loading(null))
-        try {
-            remoteDataSource.updateData(body).let {
-                if(it.isSuccessful){
-                    val body = it.body()
-                    val user = body?.data
+        remoteDataSource.updateData(body).let {
+            if(it.isSuccessful){
+                val body = it.body()
+                val user = body?.data
 
-                    if (user != null) {
-                        sessionManager.setUser(user.User)
-                    }
-
-                    emit(NetworkResult.success(user))
-
+                if (user != null) {
+                    sessionManager.setUser(user.User)
                 }
-                else {
-                    emit(NetworkResult.error(it.message(), null))
-                }
+
+                emit(NetworkResult.success(user))
             }
-        } catch (e: Exception) {
-            Log.d("TAG", "Error Server: " + e.message)
-            emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null))
+            else {
+                emit(NetworkResult.error(it.message(), null))
+            }
         }
-    }
+    }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }
 }

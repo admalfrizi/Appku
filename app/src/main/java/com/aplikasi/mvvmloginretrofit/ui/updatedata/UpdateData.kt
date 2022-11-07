@@ -58,9 +58,9 @@ class UpdateData : AppCompatActivity() {
         if(binding.emailEdt.text.toString().isEmpty()) return
 
         val sessionManager = SessionManager(this)
-        val userId = sessionManager.getUser()
+        val userId = sessionManager.getUser()?.id
         val body = UpdateDataRequest(
-            userId?.id!!,
+            userId.int(),
             binding.userEdt.text.toString(),
             binding.emailEdt.text.toString()
         )
@@ -73,7 +73,7 @@ class UpdateData : AppCompatActivity() {
                         it.message,
                         Toast.LENGTH_LONG
                     ).show()
-                    onBackPressed()
+                    super.onBackPressed()
                 }
                 State.ERROR ->{
                     _binding?.ld!!.visibility = View.GONE
@@ -97,4 +97,8 @@ class UpdateData : AppCompatActivity() {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
+}
+
+private fun Int?.int(): Int {
+    return this ?: 0
 }
