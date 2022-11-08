@@ -29,4 +29,8 @@
     <string name="cancel">Cancel</string>
     <string name="gambar_profile">gambar_profile</string>
     <string name="ganti_data_profile">Ganti Data Profile</string>
+    <string name="hi">Hi ,</string>
+    <string name="punya_masalah_hidup_silahkan_konsultasikan_disini">Punya masalah hidup !, Silahkan Konsultasikan Disini</string>
+    <string name="cari_sesuatu_disini">Cari Sesuatu Disini</string>
+    <string name="cari_orang_yang_kalian_obrolin">Cari orang yang kalian obrolin...</string>
 </resources>

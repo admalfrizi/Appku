@@ -17,4 +17,8 @@
     <color name="unselected">#86C6F4</color>
     <color name="selected">#679E98</color>
     <color name="negative">#CF0A0A</color>
+    <color name="old_blue">#395B64</color>
+    <color name="group_btn">#FC9918</color>
+    <color name="life_btn">#1DC7C7</color>
+    <color name="terapi_btn">#0D87CB</color>
 </resources>

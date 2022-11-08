@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityHomeBinding
+import com.aplikasi.mvvmloginretrofit.util.SessionManager
 
 class HomeScreen : Fragment() {
 
@@ -21,7 +22,19 @@ class HomeScreen : Fragment() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding!!.root
 
+        setUser()
+
         return view
+    }
+
+    fun setUser() {
+        val sessionManager = SessionManager(context)
+        val user = sessionManager.getUser()
+        if (user != null) {
+            binding?.apply {
+                tvName.text = user.name
+            }
+        }
     }
 
 }
