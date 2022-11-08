@@ -48,10 +48,13 @@ class UpdateData : AppCompatActivity() {
         val user = SessionManager(this).getUser()
         if(user != null) {
             binding.apply {
+                idView.text = user.id.toString()
                 userEdt.setText(user.name)
                 emailEdt.setText(user.email)
             }
         }
+
+        binding.idView.visibility = View.GONE
     }
 
     private fun updateData() {
@@ -59,9 +62,8 @@ class UpdateData : AppCompatActivity() {
         if(binding.emailEdt.text.toString().isEmpty()) return
 
         val sessionManager = SessionManager(this)
-        val userId = sessionManager.getUser()?.id
         val body = UpdateDataRequest(
-            userId.int(),
+            binding.idView.text.toString().toInt(),
             binding.userEdt.text.toString(),
             binding.emailEdt.text.toString()
         )

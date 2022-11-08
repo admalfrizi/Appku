@@ -92,12 +92,19 @@ class ProfileScreen : Fragment() {
 
     fun setUser() {
         val user = sessionManager.getUser()
-
         if (user != null) {
             binding?.apply {
                 tvName.text = user.name
                 tvEmail.text = user.email
+                tvId.text = user.id.toString()
             }
         }
+
+        binding!!.tvId.visibility = View.GONE
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
