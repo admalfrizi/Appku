@@ -23,6 +23,7 @@ import com.aplikasi.mvvmloginretrofit.databinding.ActivityProfileBinding
 import com.aplikasi.mvvmloginretrofit.ui.auth.LoginScreen
 import com.aplikasi.mvvmloginretrofit.ui.updatedata.UpdateData
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
+import com.aplikasi.mvvmloginretrofit.util.profileNameInitials
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,8 +40,6 @@ class ProfileScreen : Fragment() {
         val view = _binding!!.root
 
         sessionManager = SessionManager(context)
-        val token = sessionManager.fetchToken().toString()
-        Log.d("ProfileFragment", "Token : $token")
 
         onResume()
         updateBtn()
@@ -128,12 +127,13 @@ class ProfileScreen : Fragment() {
         }
     }
 
-    fun setUser() {
+    private fun setUser() {
         val user = sessionManager.getUser()
         if (user != null) {
             binding?.apply {
                 tvName.text = user.name
                 tvEmail.text = user.email
+                tvInisial.text = profileNameInitials(sessionManager)
                 tvId.text = user.id.toString()
             }
         }

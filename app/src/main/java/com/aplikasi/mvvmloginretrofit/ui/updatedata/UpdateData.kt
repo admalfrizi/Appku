@@ -1,17 +1,22 @@
 package com.aplikasi.mvvmloginretrofit.ui.updatedata
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityUpdateDataBinding
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
+import com.aplikasi.mvvmloginretrofit.util.profileNameInitials
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 @AndroidEntryPoint
 class UpdateData : AppCompatActivity() {
@@ -19,7 +24,7 @@ class UpdateData : AppCompatActivity() {
     private val updateViewModel: UpdateViewModel by viewModels()
     private var _binding : ActivityUpdateDataBinding? = null
     private val binding get() = _binding!!
-    private var imageProfile : File? = null
+    //private var imageProfile : File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +49,14 @@ class UpdateData : AppCompatActivity() {
         }
     }
     private fun setProfileData() {
-        val user = SessionManager(this).getUser()
+        val data = SessionManager(this)
+        val user = data.getUser()
         if(user != null) {
             binding.apply {
                 idView.text = user.id.toString()
                 userEdt.setText(user.name)
                 emailEdt.setText(user.email)
+                tvInisial.text = profileNameInitials(data)
             }
         }
 
@@ -57,6 +64,11 @@ class UpdateData : AppCompatActivity() {
     }
 
     private fun updateData() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.custom_loading_window)
+
         if(binding.userEdt.text.toString().isEmpty()) return
         if(binding.emailEdt.text.toString().isEmpty()) return
 
@@ -76,9 +88,10 @@ class UpdateData : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                     super.onBackPressed()
+                    dialog.dismiss()
                 }
                 State.ERROR ->{
-                    _binding?.ld!!.visibility = View.GONE
+                    dialog.dismiss()
                     Toast.makeText(
                         applicationContext,
                         "error : " + it.message,
@@ -87,7 +100,7 @@ class UpdateData : AppCompatActivity() {
                     Log.d("TAG", "Error : " + it.message)
                 }
                 State.LOADING -> {
-                    _binding?.ld!!.visibility = View.VISIBLE
+                    dialog.show()
                 }
             }
         }

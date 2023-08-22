@@ -29,7 +29,6 @@
                     android:layout_height="match_parent"
                     android:background="@color/third"
                     android:gravity="center"
-                    android:text="AAI"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_25sdp"
                     android:textStyle="bold" />

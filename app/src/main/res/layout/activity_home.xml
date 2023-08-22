@@ -34,7 +34,6 @@
                     android:layout_height="match_parent"
                     android:background="@color/third"
                     android:gravity="center"
-                    android:text="AAI"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_25sdp"
                     android:textStyle="bold" />
@@ -55,13 +54,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hi"
-                android:textColor="@color/third"
-                android:fontFamily="@font/inter_bold"
-                android:textSize="18sp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hi"
+                    android:textColor="@color/third"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/third"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="18sp"/>
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +118,7 @@
                     android:padding="15dp"/>
 
                 <TextView
-                    android:id="@+id/tvName"
+
                     android:layout_marginTop="8dp"
                     android:layout_width="62dp"
                     android:layout_height="wrap_content"
@@ -205,7 +220,9 @@
                     android:layout_marginStart="17.59dp"
                     android:layout_marginEnd="15.39dp"
                     android:layout_marginVertical="22dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="17.59dp"
+                    android:layout_marginRight="15.39dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -241,7 +258,8 @@
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_caret_right"/>
+                            android:src="@drawable/ic_caret_right"
+                            android:layout_marginLeft="7.99dp" />
 
                     </LinearLayout>
 
@@ -253,7 +271,8 @@
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="21dp"
-                android:background="@drawable/notif_btn">
+                android:background="@drawable/notif_btn"
+                android:layout_marginLeft="21dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -261,7 +280,9 @@
                     android:layout_marginStart="17.59dp"
                     android:layout_marginEnd="15.39dp"
                     android:layout_marginVertical="22dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="17.59dp"
+                    android:layout_marginRight="15.39dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -298,7 +319,8 @@
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_caret_right"/>
+                            android:src="@drawable/ic_caret_right"
+                            android:layout_marginLeft="7.99dp" />
 
                     </LinearLayout>
 

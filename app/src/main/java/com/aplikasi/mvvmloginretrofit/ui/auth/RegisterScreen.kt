@@ -1,12 +1,16 @@
 package com.aplikasi.mvvmloginretrofit.ui.auth
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityRegisterScreenBinding
 import com.aplikasi.tokenloginretrofit.request.RegisterRequest
@@ -42,6 +46,11 @@ class RegisterScreen : AppCompatActivity() {
     }
 
     private fun register() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.custom_loading_window)
+
         val body = RegisterRequest(
             _binding.userEdt.text.toString(),
             _binding.emailEdt.text.toString(),
@@ -53,7 +62,7 @@ class RegisterScreen : AppCompatActivity() {
                 State.SUCCESS -> {
                     Toast.makeText(
                         applicationContext,
-                        it.message,
+                        "Your Data Has Been Registered",
                         Toast.LENGTH_LONG
                     ).show()
                     Log.d("RegisterFragment", "message : ${it.message}")
@@ -61,9 +70,10 @@ class RegisterScreen : AppCompatActivity() {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
                     }
+                    dialog.dismiss()
                 }
                 State.ERROR -> {
-                    _binding.ld.visibility = View.GONE
+                    dialog.dismiss()
                     Toast.makeText(
                         applicationContext,
                         "error : " + it.message,
@@ -72,7 +82,7 @@ class RegisterScreen : AppCompatActivity() {
                     Log.d("TAG", "Error : " + it.message)
                 }
                 State.LOADING -> {
-                    _binding.ld.visibility = View.VISIBLE
+                    dialog.show()
                 }
             }
         }
