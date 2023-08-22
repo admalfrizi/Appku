@@ -11,5 +11,7 @@ class RemoteDataSource @Inject constructor(private val api : RoutesApi) {
 
      suspend fun register(body: RegisterRequest) = api.register(body)
 
-     suspend fun updateData(body: UpdateDataRequest) = api.updateData(body.id!!,body)
+     suspend fun updateData(body: UpdateDataRequest) = api.updateData(body.id,body)
+
+     suspend fun logout(token: String) = api.logout(token)
 }

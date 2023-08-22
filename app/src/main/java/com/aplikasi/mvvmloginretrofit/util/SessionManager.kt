@@ -27,7 +27,7 @@ class SessionManager(context: Context?) {
         return preferences.getBoolean(LOGIN, false)
     }
 
-    fun setUser(value: User){
+    fun setUser(value: User?){
         val data: String = Gson().toJson(value, User::class.java)
         preferences.edit().putString(USER, data).apply()
     }

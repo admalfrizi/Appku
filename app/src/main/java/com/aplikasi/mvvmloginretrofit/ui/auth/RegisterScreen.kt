@@ -38,6 +38,7 @@ class RegisterScreen : AppCompatActivity() {
             Intent(this, LoginScreen::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
+                finish()
             }
         }
     }

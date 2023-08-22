@@ -12,5 +12,4 @@ data class RegisterRequest(
 
     @SerializedName("password")
     var password: String,
-
 )

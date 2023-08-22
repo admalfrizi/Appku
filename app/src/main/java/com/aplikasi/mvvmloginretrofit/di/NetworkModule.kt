@@ -47,7 +47,6 @@ object NetworkModule {
             .build()
     }
 
-
     @Singleton
     @Provides
     fun provideBaseUrl(): String {

@@ -7,6 +7,6 @@ data class UserResponse(
     val meta: Meta,
 
     @SerializedName("data")
-    val data: Data
+    val data: Data?
 )
 

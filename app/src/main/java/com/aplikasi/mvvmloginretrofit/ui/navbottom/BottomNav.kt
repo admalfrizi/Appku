@@ -15,7 +15,9 @@ import com.aplikasi.mvvmloginretrofit.ui.screen.home.HomeScreen
 import com.aplikasi.mvvmloginretrofit.ui.screen.profile.ProfileScreen
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BottomNav : AppCompatActivity() {
 
     private lateinit var binding: ActivityBottomNavBinding

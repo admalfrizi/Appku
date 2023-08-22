@@ -1,25 +1,20 @@
 package com.aplikasi.mvvmloginretrofit.repository
 
 import android.util.Log
-import android.widget.Toast
-import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.api.NetworkResult
 import com.aplikasi.mvvmloginretrofit.api.RemoteDataSource
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
+import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.tokenloginretrofit.request.LoginRequest
 import com.aplikasi.tokenloginretrofit.request.RegisterRequest
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import okhttp3.Dispatcher
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -50,10 +45,6 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
                     val body = it.body()
                     val user = body?.data
 
-                    if (user != null) {
-                        isReg.setUser(user.User)
-                    }
-                    
                     emit(NetworkResult.success(user))
                 } else  {
                     emit(NetworkResult.error(it.message(), null))
@@ -75,6 +66,25 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
                 if (user != null) {
                     sessionManager.setUser(user.User)
                 }
+
+                emit(NetworkResult.success(user))
+            }
+            else {
+                emit(NetworkResult.error(it.message(), null))
+            }
+        }
+    }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }
+
+    fun logout(token: String, sessionManager: SessionManager) = flow {
+        emit(NetworkResult.loading(null))
+        remoteDataSource.logout(token).let {
+            if(it.isSuccessful){
+                val body = it.body()
+                val user = body?.data
+
+                sessionManager.setSession(false)
+                sessionManager.deleteToken()
+                sessionManager.setUser(null)
 
                 emit(NetworkResult.success(user))
             }
