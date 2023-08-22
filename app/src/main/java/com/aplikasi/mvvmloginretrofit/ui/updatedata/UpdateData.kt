@@ -1,16 +1,15 @@
 package com.aplikasi.mvvmloginretrofit.ui.updatedata
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityUpdateDataBinding
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
-import com.aplikasi.mvvmloginretrofit.util.int
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
@@ -73,7 +72,7 @@ class UpdateData : AppCompatActivity() {
                 State.SUCCESS -> {
                     Toast.makeText(
                         applicationContext,
-                        it.message,
+                        "Updated Data",
                         Toast.LENGTH_LONG
                     ).show()
                     super.onBackPressed()
@@ -93,7 +92,6 @@ class UpdateData : AppCompatActivity() {
             }
         }
     }
-
 
 
     override fun onSupportNavigateUp(): Boolean {

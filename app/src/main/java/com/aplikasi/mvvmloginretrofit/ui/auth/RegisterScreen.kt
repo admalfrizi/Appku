@@ -1,15 +1,14 @@
 package com.aplikasi.mvvmloginretrofit.ui.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityRegisterScreenBinding
-import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.tokenloginretrofit.request.RegisterRequest
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,15 +22,14 @@ class RegisterScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterScreenBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-        val sessionManager = SessionManager(this)
 
-        regBtn(sessionManager)
+        regBtn()
 
     }
 
-    private fun regBtn(sessionManager: SessionManager) {
+    private fun regBtn() {
         _binding.regBtn.setOnClickListener {
-            register(sessionManager)
+            register()
         }
 
         _binding.toSignin.setOnClickListener {
@@ -43,14 +41,14 @@ class RegisterScreen : AppCompatActivity() {
         }
     }
 
-    private fun register(sessionManager: SessionManager) {
+    private fun register() {
         val body = RegisterRequest(
             _binding.userEdt.text.toString(),
             _binding.emailEdt.text.toString(),
             _binding.pwEdt.text.toString()
         )
 
-        regviewModel.register(body, sessionManager).observe(this) {
+        regviewModel.register(body).observe(this) {
             when(it.state) {
                 State.SUCCESS -> {
                     Toast.makeText(
@@ -58,6 +56,7 @@ class RegisterScreen : AppCompatActivity() {
                         it.message,
                         Toast.LENGTH_LONG
                     ).show()
+                    Log.d("RegisterFragment", "message : ${it.message}")
                     Intent(applicationContext, LoginScreen::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
@@ -79,6 +78,4 @@ class RegisterScreen : AppCompatActivity() {
         }
 
     }
-
-
 }

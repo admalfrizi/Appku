@@ -37,24 +37,19 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
         }
     }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(IO)
 
-    fun register(body: RegisterRequest, isReg: SessionManager) = flow {
+    fun register(body: RegisterRequest) = flow {
         emit(NetworkResult.loading(null))
-        try {
-            remoteDataSource.register(body).let {
-                if(it.isSuccessful) {
-                    val body = it.body()
-                    val user = body?.data
+        remoteDataSource.register(body).let {
+            if(it.isSuccessful) {
+                val body = it.body()
+                val user = body?.data
 
-                    emit(NetworkResult.success(user))
-                } else  {
-                    emit(NetworkResult.error(it.message(), null))
-                }
+                emit(NetworkResult.success(user))
+            } else  {
+                emit(NetworkResult.error(it.message(), null))
             }
-        } catch (e: Exception) {
-            Log.d("TAG", "Error Server : " + e.message)
-            emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null))
         }
-    }
+    }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(IO)
 
     fun updateData(body: UpdateDataRequest, sessionManager: SessionManager) = flow {
         emit(NetworkResult.loading(null))

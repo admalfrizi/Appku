@@ -18,7 +18,7 @@ interface RoutesApi {
     suspend fun register(@Body regRequest: RegisterRequest
     ): Response<UserResponse>
 
-    @PUT(Constants.UPDATE_DATA)
+    @POST(Constants.UPDATE_DATA)
     suspend fun updateData(
         @Path("id") id: Int,
         @Body updateReq : UpdateDataRequest

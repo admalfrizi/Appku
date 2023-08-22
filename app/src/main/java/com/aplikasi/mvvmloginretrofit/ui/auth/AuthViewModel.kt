@@ -15,6 +15,6 @@ class AuthViewModel @Inject constructor(
 
     fun login(body: LoginRequest, isLogin: SessionManager) = repo.login(body, isLogin).asLiveData()
 
-    fun register(body: RegisterRequest, isReg : SessionManager) = repo.register(body, isReg).asLiveData()
+    fun register(body: RegisterRequest) = repo.register(body).asLiveData()
 
 }

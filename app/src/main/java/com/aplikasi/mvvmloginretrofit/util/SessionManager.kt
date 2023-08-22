@@ -14,7 +14,6 @@ class SessionManager(context: Context?) {
     companion object {
         const val TOKEN = "token"
         const val USER = "user"
-
         const val LOGIN = "login"
     }
 
