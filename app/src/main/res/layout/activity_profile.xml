@@ -8,7 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
             <ListView
                 android:id="@+id/data_personal_menu"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:scrollbars="none"/>
 
             <androidx.cardview.widget.CardView
@@ -120,7 +120,7 @@
             <ListView
                 android:id="@+id/services_menu"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="220dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogout"
