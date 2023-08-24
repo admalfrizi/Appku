@@ -20,7 +20,10 @@ import androidx.fragment.app.viewModels
 import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityProfileBinding
+import com.aplikasi.mvvmloginretrofit.model.MenuList
+import com.aplikasi.mvvmloginretrofit.ui.adapter.MenuAdapter
 import com.aplikasi.mvvmloginretrofit.ui.auth.LoginScreen
+import com.aplikasi.mvvmloginretrofit.ui.screen.profile.menu.ChangeDataProfileScreen
 import com.aplikasi.mvvmloginretrofit.ui.updatedata.UpdateData
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.util.profileNameInitials
@@ -42,22 +45,40 @@ class ProfileScreen : Fragment() {
         sessionManager = SessionManager(context)
 
         onResume()
-        updateBtn()
         setLoginStatus()
+        dataPersonalMenuAdapter()
+        servicesMenuAdapter()
 
         return view
+    }
+
+    private fun dataPersonalMenuAdapter() {
+        val menuList = listOf(
+            MenuList(R.drawable.arrow_menu,"Ubah Profile Anda", UpdateData::class.java),
+            MenuList(R.drawable.arrow_menu,"Ubah Kata Sandi Anda", ChangeDataProfileScreen::class.java),
+            MenuList(R.drawable.arrow_menu,"Kelas Kamu", ChangeDataProfileScreen::class.java)
+        )
+
+        val adapter = MenuAdapter(requireContext(), menuList)
+
+        binding?.dataPersonalMenu!!.adapter = adapter
+    }
+
+    private fun servicesMenuAdapter(){
+        val menuList = listOf(
+            MenuList(R.drawable.arrow_menu,"Tanya Jawab", ChangeDataProfileScreen::class.java),
+            MenuList(R.drawable.arrow_menu,"Formulir Masukan Anda", ChangeDataProfileScreen::class.java),
+            MenuList(R.drawable.arrow_menu,"Beri Nilai Aplikasi", ChangeDataProfileScreen::class.java)
+        )
+
+        val adapter = MenuAdapter(requireContext(), menuList)
+
+        binding?.servicesMenu!!.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         logoutButton()
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun updateBtn() {
-        _binding?.btnUpdate!!.setOnClickListener {
-            val intent = Intent(context, UpdateData::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun logoutButton() {
@@ -132,7 +153,6 @@ class ProfileScreen : Fragment() {
         if (user != null) {
             binding?.apply {
                 tvName.text = user.name
-                tvEmail.text = user.email
                 tvInisial.text = profileNameInitials(sessionManager)
                 tvId.text = user.id.toString()
             }

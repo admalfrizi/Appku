@@ -34,4 +34,17 @@
     <string name="cari_sesuatu_disini">Cari Sesuatu Disini</string>
     <string name="cari_orang_yang_kalian_obrolin">Cari orang yang kalian obrolin...</string>
     <string name="sedang_di_proses">Sedang Di Proses</string>
+    <string name="pengaturan_data_pribadi">Pengaturan Data Pribadi</string>
+    <string name="layanan_aplikasi">Layanan Aplikasi</string>
+    <string name="main_course">Mental</string>
+    <string name="jumat_28_februari_2023">Jumat, 28 Feb</string>
+    <string name="_19_30">19:30</string>
+    <string name="ayo_ikutan_webinar">Ayo Ikutan Webinar</string>
+    <string name="lihat_semua">Lihat Semua</string>
+    <string name="berita_terbaru">Berita Terbaru</string>
+    <string name="ada_kelas_baru_nih">Ada Kelas Baru Nih</string>
+    <string name="title_class">Title Class</string>
+    <string name="pemula">Pemula</string>
+    <string name="videos">Videos</string>
+    <string name="sosial">Sosial</string>
 </resources>

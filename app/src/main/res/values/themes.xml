@@ -15,6 +15,15 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_bg_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="checkedIconTint">@color/chip_text_color</item>
+        <item name="chipStrokeColor">@color/chip_text_color</item>
+        <item name="chipCornerRadius">9dp</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
 
     <style name="textActive">
         <item name="android:textColor">@color/selected</item>

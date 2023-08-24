@@ -17,6 +17,10 @@
         android:theme="@style/Theme.MVVMLoginRetrofit"
         tools:targetApi="31">
         <activity
+            android:name=".ui.screen.profile.menu.ChangeDataProfileScreen"
+            android:label="Update Data"
+            android:exported="false" />
+        <activity
             android:name=".ui.updatedata.UpdateData"
             android:exported="false" />
         <activity

@@ -49,6 +49,89 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hasil Pencarian Terbanyak"
+            android:layout_marginStart="23dp"
+            android:fontFamily="@font/inter_semibold"
+            android:textColor="@color/third"
+            android:layout_marginLeft="23dp" />
+
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="12dp"
+            android:paddingStart="16dp"
+            android:scrollbars="none"
+            android:paddingLeft="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.ChipGroup
+
+                    android:id="@+id/mlType_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:checkedChip="@+id/main_course_chip"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle"
+                        android:checkable="true"
+                        android:id="@+id/main_course_chip"
+                        android:layout_width="101dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="@string/main_course"
+                        android:gravity="center_horizontal" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle"
+                        android:id="@+id/side_dish_chip"
+                        android:checkable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Interaksi Sosial"
+                        android:gravity="center_horizontal" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle"
+                        android:id="@+id/dessert_chip"
+                        android:checkable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Penyelesaian Masalah"
+                        android:gravity="center_horizontal" />
+
+
+
+                </com.google.android.material.chip.ChipGroup>
+
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hasil Pencarian"
+            android:fontFamily="@font/inter_semibold"
+            android:layout_marginStart="23dp"
+            android:textColor="@color/third"
+            android:layout_marginLeft="23dp"/>
+
     </LinearLayout>
 
 </FrameLayout>

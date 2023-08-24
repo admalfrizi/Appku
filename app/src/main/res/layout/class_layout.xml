@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="23dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginLeft="23dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row_cv"
+        android:layout_width="179dp"
+        android:layout_height="143dp"
+        app:cardBackgroundColor="@color/appBar"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp">
+
+                <TextView
+                    android:paddingHorizontal="14dp"
+                    android:id="@+id/titleClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/third"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/title_class"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="9dp"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/stageTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/pemula"
+                        android:textSize="11sp"
+                        android:layout_alignParentLeft="true" />
+                    
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="56dp"
+                        android:layout_height="15dp"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardBackgroundColor="@color/third"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/jmlh_video"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="9sp"
+                                android:fontFamily="@font/inter_semibold"
+                                android:textColor="@color/white"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/videos"
+                                android:layout_marginStart="3dp"
+                                android:fontFamily="@font/inter_semibold"
+                                android:textSize="9sp"
+                                android:textColor="@color/white"
+                                android:layout_marginLeft="3dp" />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

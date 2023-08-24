@@ -21,4 +21,15 @@
     <color name="group_btn">#FC9918</color>
     <color name="life_btn">#1DC7C7</color>
     <color name="terapi_btn">#0D87CB</color>
+    <color name="menuColorView">#CAF0F2</color>
+    <color name="appBar">#CAF0F2</color>
+
+    <color name="selectedChipColor">#BAFCFF</color>
+    <color name="unselectedChipColor">#87DADE</color>
+
+    <color name="selectedTextChip">#395B64</color>
+    <color name="unselectedTextChip">#648F9A</color>
+
+    <color name="checkedChipTextColor">#6200EA</color>
+    <color name="chipTextColor">@color/black</color>
 </resources>
