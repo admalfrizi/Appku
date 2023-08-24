@@ -39,6 +39,7 @@ class MenuAdapter(
             holder = convertView.tag as ViewHolder
         }
 
+        holder.binding.menuIcon.setImageResource(dataSource[position].imgMenu)
         holder.binding.menuTitle.text = dataSource[position].titleMenu
         holder.binding.root.setOnClickListener {
             val intent = Intent(context, dataSource[position].settingScr)

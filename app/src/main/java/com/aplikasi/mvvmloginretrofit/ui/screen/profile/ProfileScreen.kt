@@ -54,9 +54,9 @@ class ProfileScreen : Fragment() {
 
     private fun dataPersonalMenuAdapter() {
         val menuList = listOf(
-            MenuList(R.drawable.arrow_menu,"Ubah Profile Anda", UpdateData::class.java),
-            MenuList(R.drawable.arrow_menu,"Ubah Kata Sandi Anda", ChangeDataProfileScreen::class.java),
-            MenuList(R.drawable.arrow_menu,"Kelas Kamu", ChangeDataProfileScreen::class.java)
+            MenuList(R.drawable.ic_change_data,"Ubah Profile Anda", UpdateData::class.java),
+            MenuList(R.drawable.key_ic,"Ubah Kata Sandi Anda", ChangeDataProfileScreen::class.java),
+            MenuList(R.drawable.your_class,"Kelas Kamu", ChangeDataProfileScreen::class.java)
         )
 
         val adapter = MenuAdapter(requireContext(), menuList)
@@ -66,9 +66,9 @@ class ProfileScreen : Fragment() {
 
     private fun servicesMenuAdapter(){
         val menuList = listOf(
-            MenuList(R.drawable.arrow_menu,"Tanya Jawab", ChangeDataProfileScreen::class.java),
-            MenuList(R.drawable.arrow_menu,"Formulir Masukan Anda", ChangeDataProfileScreen::class.java),
-            MenuList(R.drawable.arrow_menu,"Beri Nilai Aplikasi", ChangeDataProfileScreen::class.java)
+            MenuList(R.drawable.qna_ic,"Tanya Jawab", ChangeDataProfileScreen::class.java),
+            MenuList(R.drawable.form_suggestion,"Formulir Masukan Anda", ChangeDataProfileScreen::class.java),
+            MenuList(R.drawable.like_ic,"Beri Nilai Aplikasi", ChangeDataProfileScreen::class.java)
         )
 
         val adapter = MenuAdapter(requireContext(), menuList)
