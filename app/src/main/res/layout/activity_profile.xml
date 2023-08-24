@@ -6,132 +6,136 @@
     android:layout_height="match_parent"
     android:background="@color/light_blue">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="@dimen/_25sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_inisial"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/third"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/image_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/gambar_profile"
+                    android:scaleType="centerCrop" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/bearer_token"
+            android:textColor="@color/third"
+            android:textSize="@dimen/_24ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/bearer_token"
+            android:textColor="@color/third"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="30dp"
-                app:cardCornerRadius="@dimen/_25sdp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/tv_inisial"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/third"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_25sdp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/image_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/gambar_profile"
-                        android:scaleType="centerCrop" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+            app:cardBackgroundColor="@color/menuColorView"
+            app:cardElevation="0dp">
 
             <TextView
-                android:id="@+id/tvId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/bearer_token"
-                android:textColor="@color/third"
-                android:textSize="@dimen/_24ssp"
-                android:textStyle="bold" />
+                android:layout_marginVertical="14dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginLeft="21dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/pengaturan_data_pribadi"
+                android:textColor="@color/third" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ListView
+            android:id="@+id/data_personal_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:scrollbars="none"
+            android:transcriptMode="alwaysScroll"
+            tools:listitem="2" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/menuColorView"
+            app:cardElevation="0dp">
 
             <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/bearer_token"
-                android:textColor="@color/third"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/menuColorView"
-                app:cardElevation="0dp">
+                android:layout_marginVertical="14dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginLeft="21dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/layanan_aplikasi"
+                android:textColor="@color/third" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="14dp"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginLeft="21dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="@string/pengaturan_data_pribadi"
-                    android:textColor="@color/third" />
+        </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
+        <ListView
+            android:id="@+id/services_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:transcriptMode="alwaysScroll"
+            tools:listitem="2" />
 
-            <ListView
-                android:id="@+id/data_personal_menu"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:scrollbars="none"/>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/menuColorView"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="14dp"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginLeft="21dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="@string/layanan_aplikasi"
-                    android:textColor="@color/third" />
-
-            </androidx.cardview.widget.CardView>
-
-            <ListView
-                android:id="@+id/services_menu"
-                android:layout_width="match_parent"
-                android:layout_height="220dp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/enter"
-                android:text="@string/logout_button"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </ScrollView>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/enter"
+            android:text="@string/logout_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
