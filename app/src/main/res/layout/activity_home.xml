@@ -207,19 +207,21 @@
 
                 />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:background="@drawable/group_notif_btn">
+                    android:layout_width="170dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/group_notif_btn"
+                    android:layout_alignParentLeft="true">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="17.59dp"
                         android:layout_marginEnd="15.39dp"
@@ -229,6 +231,7 @@
                         android:layout_marginRight="15.39dp">
 
                         <ImageView
+                            android:id="@+id/chat_ic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_group_notif"
@@ -238,7 +241,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Grup"
+                            android:layout_below="@id/chat_ic"
+                            android:text="@string/grup"
+                            android:layout_marginTop="15dp"
                             android:fontFamily="@font/inter_semibold"
                             android:textColor="@color/white"
                             />
@@ -246,6 +251,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
                             android:layout_marginTop="8.88dp">
 
                             <TextView
@@ -267,49 +273,54 @@
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="70dp"
-                    android:gravity="end"
+                    android:layout_width="170dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_alignParentRight="true"
                     android:background="@drawable/notif_btn"
-                    android:layout_marginLeft="70dp">
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentEnd="true">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="17.59dp"
                         android:layout_marginEnd="15.39dp"
-                        android:gravity=""
                         android:layout_marginVertical="22dp"
-                        android:orientation="vertical"
                         android:layout_marginLeft="17.59dp"
                         android:layout_marginRight="15.39dp">
 
                         <ImageView
+                            android:id="@+id/notif_ic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_notif"
-                            android:layout_marginBottom="26.18dp"/>
+                            android:layout_marginBottom="16.79dp"/>
 
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/warningtxt"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Peringatan"
-                            android:textSize="14sp"
+                            android:layout_below="@+id/notif_ic"
+                            android:layout_marginTop="26dp"
+                            android:layout_marginBottom="86dp"
                             android:fontFamily="@font/inter_semibold"
-                            android:textColor="@color/white"
-                            />
+                            android:text="@string/peringatan"
+                            android:textColor="@color/white" />
 
                         <LinearLayout
+                            android:id="@+id/more_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8.35dp">
+                            android:orientation="horizontal"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="8.88dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -330,12 +341,11 @@
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
