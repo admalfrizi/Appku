@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityHomeBinding
 import com.aplikasi.mvvmloginretrofit.model.ClassModels
 import com.aplikasi.mvvmloginretrofit.model.WebinarModels
+import com.aplikasi.mvvmloginretrofit.model.response.NewsModels
 import com.aplikasi.mvvmloginretrofit.ui.adapter.ClassAdapter
+import com.aplikasi.mvvmloginretrofit.ui.adapter.NewsAdapter
 import com.aplikasi.mvvmloginretrofit.ui.adapter.TileAdapter
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.util.profileNameInitials
@@ -29,6 +32,12 @@ class HomeScreen : Fragment() {
         ClassModels(3, "Kelas3", "Pemula",5)
     )
 
+    private var news = listOf(
+        NewsModels(1,"News1", "28 Februari 2022", "12:00"),
+        NewsModels(2,"News2", "28 Februari 2022", "12:00"),
+        NewsModels(3,"News3", "28 Februari 2022", "12:00")
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +49,7 @@ class HomeScreen : Fragment() {
         setUser()
         setWebinarAdapter()
         setClassAdapter()
+        setNewsAdapter()
 
         return view
     }
@@ -54,6 +64,12 @@ class HomeScreen : Fragment() {
         val classAdapter = ClassAdapter(classModel.toMutableList())
         binding?.classRv!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding?.classRv!!.adapter = classAdapter
+    }
+
+    private fun setNewsAdapter(){
+        val newsAdapter = NewsAdapter(news.toMutableList())
+        binding?.newsRv!!.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL,false)
+        binding?.newsRv!!.adapter = newsAdapter
     }
 
     private fun setUser() {
