@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
                         android:text="@string/jumat_28_februari_2023"
-                        android:textSize="7sp" />
+                        android:textSize="9sp" />
 
 
                     <TextView
@@ -64,7 +64,7 @@
                         android:fontFamily="@font/inter_semibold"
                         android:text="@string/_19_30"
                         android:layout_alignParentEnd="true"
-                        android:textSize="7sp"
+                        android:textSize="9sp"
                         android:layout_alignParentRight="true" />
 
                 </RelativeLayout>
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Nama Berita"
+                    android:text="@string/nama_berita"
                     android:textSize="13sp" />
 
             </LinearLayout>

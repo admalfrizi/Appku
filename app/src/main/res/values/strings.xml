@@ -49,4 +49,11 @@
     <string name="sosial">Sosial</string>
     <string name="peringatan">Peringatan</string>
     <string name="grup">Grup</string>
+    <string name="nama_berita">Nama Berita</string>
+    <string name="terapi_mindset">Terapi Mindset</string>
+    <string name="pemberitahuan">Pemberitahuan</string>
+    <string name="lihat_lebih_lanjut">Lihat Lebih Lanjut</string>
+    <string name="kehidupan">Kehidupan</string>
+    <string name="belajar_kehidupan">Belajar Kehidupan</string>
+    <string name="group_konsultasi">Group Konsultasi</string>
 </resources>

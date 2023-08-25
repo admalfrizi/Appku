@@ -126,7 +126,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Group Konsultasi"
+                        android:text="@string/group_konsultasi"
                         android:textAlignment="center"
                         android:fontFamily="@font/inter_semibold"
                         android:textColor="@color/white"
@@ -152,7 +152,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Belajar Kehidupan"
+                        android:text="@string/belajar_kehidupan"
                         android:fontFamily="@font/inter_semibold"
                         android:textAlignment="center"
                         android:textColor="@color/white"
@@ -178,7 +178,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Terapi Mindset"
+                        android:text="@string/terapi_mindset"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:fontFamily="@font/inter_semibold"
@@ -201,7 +201,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pemberitahuan"
+                android:text="@string/pemberitahuan"
                 android:fontFamily="@font/inter_medium"
                 android:textColor="@color/third"
 
@@ -257,7 +257,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Lihat Lebih Lanjut"
+                                android:text="@string/lihat_lebih_lanjut"
                                 android:textSize="10sp"
                                 android:fontFamily="@font/inter_medium"
                                 android:textColor="@color/white"
@@ -325,7 +325,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Lihat Lebih Lanjut"
+                                android:text="@string/lihat_lebih_lanjut"
                                 android:textSize="10sp"
                                 android:fontFamily="@font/inter_medium"
                                 android:textColor="@color/white"
@@ -424,7 +424,7 @@
                         android:layout_width="101dp"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Kehidupan"
+                        android:text="@string/kehidupan"
                         android:gravity="center_horizontal" />
 
                     <com.google.android.material.chip.Chip
