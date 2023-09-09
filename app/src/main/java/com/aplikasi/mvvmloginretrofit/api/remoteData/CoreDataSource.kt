@@ -3,7 +3,6 @@ package com.aplikasi.mvvmloginretrofit.api.remoteData
 import com.aplikasi.mvvmloginretrofit.api.apiRoutes.CoreApi
 import javax.inject.Inject
 
-
 class CoreDataSource @Inject constructor(private val api : CoreApi){
 
     suspend fun getWebinars() = api.webinarsData()
