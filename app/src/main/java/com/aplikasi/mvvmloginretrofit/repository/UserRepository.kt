@@ -2,7 +2,7 @@ package com.aplikasi.mvvmloginretrofit.repository
 
 import android.util.Log
 import com.aplikasi.mvvmloginretrofit.api.NetworkResult
-import com.aplikasi.mvvmloginretrofit.api.RemoteDataSource
+import com.aplikasi.mvvmloginretrofit.api.remoteData.UserDataSource
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.tokenloginretrofit.request.LoginRequest
@@ -18,11 +18,11 @@ import javax.inject.Inject
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-class UserRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) {
+class UserRepository @Inject constructor(private val userDataSource: UserDataSource) {
 
     fun login(body : LoginRequest, isLogin: SessionManager) = flow {
         emit(NetworkResult.loading(null))
-        remoteDataSource.login(body).let {
+        userDataSource.login(body).let {
             if (it.isSuccessful){
                 val body = it.body()
                 val user = body?.data
@@ -39,7 +39,7 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
     fun register(body: RegisterRequest) = flow {
         emit(NetworkResult.loading(null))
-        remoteDataSource.register(body).let {
+        userDataSource.register(body).let {
             if(it.isSuccessful) {
                 val body = it.body()
                 val user = body?.data
@@ -53,7 +53,7 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
     fun updateData(body: UpdateDataRequest, sessionManager: SessionManager) = flow {
         emit(NetworkResult.loading(null))
-        remoteDataSource.updateData(body).let {
+        userDataSource.updateData(body).let {
             if(it.isSuccessful){
                 val body = it.body()
                 val user = body?.data
@@ -72,7 +72,7 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
     fun logout(token: String, sessionManager: SessionManager) = flow {
         emit(NetworkResult.loading(null))
-        remoteDataSource.logout(token).let {
+        userDataSource.logout(token).let {
             if(it.isSuccessful){
                 val body = it.body()
                 val user = body?.data

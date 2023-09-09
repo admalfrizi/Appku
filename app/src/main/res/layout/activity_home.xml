@@ -379,10 +379,35 @@
 
         </RelativeLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/loadingWebinarsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginTop="19dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/loading_row_layout">
+
+                </include>
+
+                <include layout="@layout/loading_row_layout">
+
+                </include>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/webinar_rv"
             android:layout_width="wrap_content"
             android:layout_height="112dp"
+            android:visibility="gone"
             android:layout_marginTop="19dp"
             tools:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -497,11 +522,36 @@
 
         </RelativeLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/loadingNewsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginTop="19dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/loading_row_layout">
+
+                </include>
+
+                <include layout="@layout/loading_row_layout">
+
+                </include>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/news_rv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
+            android:visibility="gone"
             tools:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/news_tile_layout"/>

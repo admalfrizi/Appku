@@ -1,10 +1,13 @@
 package com.aplikasi.mvvmloginretrofit.di
 
 import android.content.Context
-import com.aplikasi.mvvmloginretrofit.api.RemoteDataSource
+import com.aplikasi.mvvmloginretrofit.api.remoteData.UserDataSource
 import com.aplikasi.mvvmloginretrofit.util.Constants
 import com.aplikasi.mvvmloginretrofit.api.RequestInterceptor
-import com.aplikasi.mvvmloginretrofit.api.RoutesApi
+import com.aplikasi.mvvmloginretrofit.api.apiRoutes.AuthApi
+import com.aplikasi.mvvmloginretrofit.api.apiRoutes.CoreApi
+import com.aplikasi.mvvmloginretrofit.api.remoteData.CoreDataSource
+import com.aplikasi.mvvmloginretrofit.repository.DataRepository
 import com.aplikasi.mvvmloginretrofit.repository.UserRepository
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -58,25 +61,49 @@ object NetworkModule {
     fun provideService(
         okHttpClient: OkHttpClient,
         baseUrl : String
-    ): RoutesApi{
+    ): AuthApi {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .client(okHttpClient)
             .build()
-            .create(RoutesApi::class.java)
+            .create(AuthApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCoreService(
+        okHttpClient: OkHttpClient,
+        baseUrl : String
+    ): CoreApi {
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+            .client(okHttpClient)
+            .build()
+            .create(CoreApi::class.java)
     }
 
     @Provides
-    fun provideRemoteData(routesApi: RoutesApi) : RemoteDataSource{
-        return RemoteDataSource(routesApi)
+    fun provideAuthData(authApi: AuthApi) : UserDataSource {
+        return UserDataSource(authApi)
     }
 
+    @Provides
+    fun provideUserRepo(userDataSource: UserDataSource) :UserRepository{
+        return UserRepository(userDataSource)
+    }
 
     @Provides
-    fun provideUserRepo(remoteDataSource: RemoteDataSource) :UserRepository{
-        return UserRepository(remoteDataSource)
+    fun provideCoreData(coreApi : CoreApi): CoreDataSource {
+        return CoreDataSource(coreApi)
+    }
+
+    @Provides
+    fun provideCoreRepo(coreDataSource: CoreDataSource) : DataRepository {
+        return DataRepository(coreDataSource)
     }
 
 }

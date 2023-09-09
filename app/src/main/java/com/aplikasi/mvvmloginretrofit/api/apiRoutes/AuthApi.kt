@@ -1,4 +1,4 @@
-package com.aplikasi.mvvmloginretrofit.api
+package com.aplikasi.mvvmloginretrofit.api.apiRoutes
 
 import com.aplikasi.mvvmloginretrofit.model.request.UpdateDataRequest
 import com.aplikasi.mvvmloginretrofit.util.Constants
@@ -8,7 +8,7 @@ import com.aplikasi.tokenloginretrofit.response.user.UserResponse
 import retrofit2.Response
 import retrofit2.http.*
 
-interface RoutesApi {
+interface AuthApi {
 
     @POST(Constants.LOGIN_URL)
     suspend fun login(@Body loginRequest: LoginRequest
@@ -28,4 +28,5 @@ interface RoutesApi {
     suspend fun logout(
         @Header("Authorization") authToken : String
     ): Response<UserResponse>
+
 }

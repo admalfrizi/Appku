@@ -1,4 +1,4 @@
-package com.aplikasi.mvvmloginretrofit.model.response
+package com.aplikasi.mvvmloginretrofit.model
 
 data class NewsModels(
     val id: Int,

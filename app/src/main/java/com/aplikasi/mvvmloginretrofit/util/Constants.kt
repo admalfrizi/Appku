@@ -7,4 +7,7 @@ object Constants {
     const val REGISTER_URL = "register"
     const val LOGOUT_URL = "logout"
     const val UPDATE_DATA = "updateData/{id}"
+
+    const val WEBINAR_DATA_LIST = "webinar"
+    const val NEWS_DATA_LIST = "news"
 }

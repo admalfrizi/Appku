@@ -24,6 +24,8 @@
     <color name="menuColorView">#CAF0F2</color>
     <color name="appBar">#CAF0F2</color>
 
+    <color name="mediumGray">#D1D1D1</color>
+
     <color name="selectedChipColor">#BAFCFF</color>
     <color name="unselectedChipColor">#87DADE</color>
 
@@ -32,4 +34,6 @@
 
     <color name="checkedChipTextColor">#6200EA</color>
     <color name="chipTextColor">@color/black</color>
+
+    <color name="placeHolderColor">@color/mediumGray</color>
 </resources>

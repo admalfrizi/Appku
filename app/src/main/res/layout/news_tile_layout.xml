@@ -53,6 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
+                        android:textColor="@color/third"
                         android:text="@string/jumat_28_februari_2023"
                         android:textSize="9sp" />
 
@@ -64,6 +65,7 @@
                         android:fontFamily="@font/inter_semibold"
                         android:text="@string/_19_30"
                         android:layout_alignParentEnd="true"
+                        android:textColor="@color/third"
                         android:textSize="9sp"
                         android:layout_alignParentRight="true" />
 
@@ -74,12 +76,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9dp"
+                    android:textColor="@color/third"
                     android:fontFamily="@font/inter_bold"
                     android:text="@string/nama_berita"
                     android:textSize="13sp" />
 
             </LinearLayout>
-
 
         </LinearLayout>
 

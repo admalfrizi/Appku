@@ -1,12 +1,16 @@
 package com.aplikasi.mvvmloginretrofit.ui.screen.home
 
 import androidx.lifecycle.ViewModel
-import com.aplikasi.mvvmloginretrofit.repository.UserRepository
+import androidx.lifecycle.asLiveData
+import com.aplikasi.mvvmloginretrofit.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    val repo : UserRepository
+    private val repo : DataRepository
 ) : ViewModel() {
+    fun webinarsList() = repo.getWebinarsList().asLiveData()
+
+    fun newsList() = repo.getNewsList().asLiveData()
 }
