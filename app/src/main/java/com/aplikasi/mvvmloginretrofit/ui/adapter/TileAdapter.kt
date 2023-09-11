@@ -1,14 +1,19 @@
 package com.aplikasi.mvvmloginretrofit.ui.adapter
 
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.databinding.TileLayoutBinding
 import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.Data
-import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.DataResponse
+import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.WebinarDataResponse
+import com.aplikasi.mvvmloginretrofit.util.Constants.IMAGE_URL
+import com.aplikasi.mvvmloginretrofit.util.Constants.WEBINAR_IMAGES
 import com.aplikasi.mvvmloginretrofit.util.DiffUtilsAdapter
 import java.text.DateFormat
 import java.text.ParseException
@@ -24,6 +29,7 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
         val tgl = binding.tglWebinar
         val title = binding.titleWebinar
         val jam = binding.clockWebinar
+        val imgWebinar = binding.webinarImg
         val freeOrBuy = binding.freeOrBuy
 
         companion object {
@@ -42,13 +48,22 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TileViewHolder, position: Int) {
-        val webinar = webinarList[position]
+        val webinarList = webinarList[position]
 
+        holder.jam.text = getparsedDateToTime(webinarList.created_at!!)
+        holder.tgl.text = getparsedDate(webinarList.created_at)
+        holder.title.text = webinarList.titleWebinar
+        holder.freeOrBuy.text = webinarList.freeOrBuy
+        if(webinarList.imageGalleries[0].image.isNullOrEmpty()){
+            holder.imgWebinar.setImageResource(R.drawable.your_class)
+        } else {
+            holder.imgWebinar.load(IMAGE_URL + WEBINAR_IMAGES + "/" + webinarList.id + "/" + webinarList.imageGalleries[0].image) {
+                crossfade(600)
+                error(R.drawable.group_btn)
+            }
+        }
 
-        holder.jam.text = getparsedDateToTime(webinar.created_at!!)
-        holder.tgl.text = getparsedDate(webinar.created_at)
-        holder.title.text = webinar.titleWebinar
-        holder.freeOrBuy.text = webinar.freeOrBuy
+        Log.d("RecyclerViewWebinars", IMAGE_URL + WEBINAR_IMAGES + "/" + webinarList.id + "/" + webinarList.imageGalleries[0].image)
     }
 
     @Throws(Exception::class)
@@ -85,7 +100,7 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
         return webinarList.size
     }
 
-    fun setData(newData: DataResponse){
+    fun setData(newData: WebinarDataResponse){
         val dataDiffUtils = DiffUtilsAdapter(webinarList, newData.data)
         val diffUtilResult = DiffUtil.calculateDiff(dataDiffUtils)
 

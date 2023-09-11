@@ -434,49 +434,27 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/mlType_group"
+                    android:id="@+id/categoryChip"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:checkedChip="@+id/main_course_chip"
+                    app:checkedChip="@+id/all_categories"
                     android:paddingStart="23dp"
                     app:selectionRequired="true"
                     app:singleLine="true"
+                    android:visibility="gone"
                     app:singleSelection="true"
-                    android:paddingLeft="23dp">
+                    android:paddingLeft="23dp"
+                    tools:ignore="RtlSymmetry">
 
                     <com.google.android.material.chip.Chip
                         style="@style/CustomChipStyle"
                         android:checkable="true"
-                        android:id="@+id/main_course_chip"
-                        android:layout_width="101dp"
-                        android:layout_marginRight="13dp"
+                        android:id="@+id/all_categories"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="@string/kehidupan"
-                        android:gravity="center_horizontal"
-                        android:layout_marginEnd="13dp" />
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/CustomChipStyle"
-                        android:checkable="true"
-                        android:layout_width="101dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="13dp"
-                        android:textAlignment="center"
-                        android:text="@string/main_course"
-                        android:gravity="center_horizontal"
-                        android:layout_marginEnd="13dp" />
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/CustomChipStyle"
-                        android:checkable="true"
-                        android:layout_width="101dp"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_marginRight="13dp"
-                        android:text="@string/sosial"
-                        android:gravity="center_horizontal"
-                        android:layout_marginEnd="13dp" />
+                        android:text="@string/semua_kategori"
+                        android:gravity="center_horizontal"/>
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -486,11 +464,35 @@
 
         </HorizontalScrollView>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/loadingKelasRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/loading_row_layout">
+
+                </include>
+
+                <include layout="@layout/loading_row_layout">
+
+                </include>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/class_rv"
+            android:id="@+id/kelas_rv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:orientation="horizontal"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/class_layout"/>
 

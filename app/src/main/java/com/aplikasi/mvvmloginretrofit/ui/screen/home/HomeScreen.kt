@@ -10,14 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.api.State
 import com.aplikasi.mvvmloginretrofit.databinding.ActivityHomeBinding
-import com.aplikasi.mvvmloginretrofit.model.ClassModels
 import com.aplikasi.mvvmloginretrofit.ui.adapter.ClassAdapter
 import com.aplikasi.mvvmloginretrofit.ui.adapter.NewsAdapter
 import com.aplikasi.mvvmloginretrofit.ui.adapter.TileAdapter
 import com.aplikasi.mvvmloginretrofit.util.SessionManager
 import com.aplikasi.mvvmloginretrofit.util.profileNameInitials
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,12 +33,12 @@ class HomeScreen : Fragment() {
     private val newsAdapter by lazy {
         NewsAdapter()
     }
+    private val kelasAdapter by lazy {
+        ClassAdapter()
+    }
 
-    private var classModel = listOf(
-        ClassModels(1, "Kelas1", "Pemula",12),
-        ClassModels(2, "Kelas2", "Menengah",8),
-        ClassModels(3, "Kelas3", "Pemula",5)
-    )
+    private var categoryTitle = "Semua Kategori"
+    private var categoryId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +54,59 @@ class HomeScreen : Fragment() {
         setNewsAdapter()
         setDataApi()
 
+        binding.categoryChip.setOnCheckedStateChangeListener { group, checkedIds ->
+            val chip = group.findViewById<Chip>(checkedIds.first())
+            val selectedCategoryName = chip.text.toString()
+
+            Log.d("HomeScreen", selectedCategoryName)
+            categoryTitle = selectedCategoryName
+
+            if(selectedCategoryName == "Semua Kategori"){
+                categoryId = 0
+                generateKelasData(categoryId)
+            }
+
+            if(selectedCategoryName == "Mental"){
+                categoryId = 1
+                generateKelasData(categoryId)
+            }
+
+            if(selectedCategoryName == "Sosial"){
+                categoryId = 2
+                generateKelasData(categoryId)
+            }
+
+            if(selectedCategoryName == "Kehidupan"){
+                categoryId = 3
+                generateKelasData(categoryId)
+            }
+        }
+
         return view
+    }
+
+    private fun generateKelasData(categories : Int){
+        homeViewModel.kelasWithCategory(categories).observe(viewLifecycleOwner){
+            when(it.state) {
+                State.SUCCESS -> {
+                    val data = it.data
+                    kelasAdapter.setData(data!!)
+                    loadingKelasStop()
+                }
+                State.ERROR -> {
+                    loadingKelasStop()
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.d("TAG", "Error : " + it.message)
+                }
+                State.LOADING -> {
+                    binding.loadingKelasRv.startShimmer()
+                }
+            }
+        }
     }
 
     private fun setWebinarAdapter() {
@@ -62,9 +116,8 @@ class HomeScreen : Fragment() {
     }
 
     private fun setClassAdapter() {
-        val classAdapter = ClassAdapter(classModel.toMutableList())
-        binding.classRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.classRv.adapter = classAdapter
+        binding.kelasRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.kelasRv.adapter = kelasAdapter
     }
 
     private fun setNewsAdapter(){
@@ -100,7 +153,9 @@ class HomeScreen : Fragment() {
             when(it.state) {
                 State.SUCCESS -> {
                     val data = it.data
+
                     newsAdapter.setData(data!!)
+
                     loadingNewsStop()
                 }
                 State.ERROR -> {
@@ -114,6 +169,45 @@ class HomeScreen : Fragment() {
                 }
                 State.LOADING -> {
                     binding.loadingNewsRv.startShimmer()
+                }
+            }
+        }
+
+        homeViewModel.kategoriKelas().observe(viewLifecycleOwner){
+            when(it.state) {
+                State.SUCCESS -> {
+                    val data = it.data
+                    for (item in data?.data!!){
+                        val chipData = item?.categoryName
+                        val chipDrawable = ChipDrawable.createFromAttributes(
+                            requireContext(),
+                            null,
+                            0,
+                            R.style.CustomChipStyle
+                        )
+                        val chip = Chip(context)
+
+                        chip.setChipDrawable(chipDrawable)
+                        chip.setTextAppearance(R.style.chipTextAppearance)
+                        chip.text = chipData
+                        chip.isChecked = true
+                        chip.isCheckable = true
+                        chip.isClickable = true
+                        binding.categoryChip.addView(chip)
+                    }
+                    binding.categoryChip.visibility = View.VISIBLE
+                    binding.categoryChip.check(R.id.all_categories)
+                }
+                State.ERROR -> {
+                    loadingKelasStop()
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.d("TAG", "Error : " + it.message)
+                }
+                State.LOADING -> {
                 }
             }
         }
@@ -140,6 +234,12 @@ class HomeScreen : Fragment() {
         binding.loadingNewsRv.stopShimmer()
         binding.loadingNewsRv.visibility = View.GONE
         binding.newsRv.visibility = View.VISIBLE
+    }
+
+    private fun loadingKelasStop(){
+        binding.loadingKelasRv.stopShimmer()
+        binding.loadingKelasRv.visibility = View.GONE
+        binding.kelasRv.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

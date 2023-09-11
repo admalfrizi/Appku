@@ -32,7 +32,7 @@
     <string name="hi">Hi, </string>
     <string name="punya_masalah_hidup_silahkan_konsultasikan_disini">Punya masalah hidup !, Silahkan Konsultasikan Disini</string>
     <string name="cari_sesuatu_disini">Cari Sesuatu Disini</string>
-    <string name="cari_orang_yang_kalian_obrolin">Cari orang yang kalian obrolin...</string>
+    <string name="cari_orang_yang_kalian_obrolin">Cari orang yang kalian obrolin…</string>
     <string name="sedang_di_proses">Sedang Di Proses</string>
     <string name="pengaturan_data_pribadi">Pengaturan Data Pribadi</string>
     <string name="layanan_aplikasi">Layanan Aplikasi</string>
@@ -56,4 +56,5 @@
     <string name="kehidupan">Kehidupan</string>
     <string name="belajar_kehidupan">Belajar Kehidupan</string>
     <string name="group_konsultasi">Group Konsultasi</string>
+    <string name="semua_kategori">Semua Kategori</string>
 </resources>
