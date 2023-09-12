@@ -54,12 +54,12 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
         holder.tgl.text = getparsedDate(webinarList.created_at)
         holder.title.text = webinarList.titleWebinar
         holder.freeOrBuy.text = webinarList.freeOrBuy
-        if(webinarList.imageGalleries[0].image.isNullOrEmpty()){
-            holder.imgWebinar.setImageResource(R.drawable.your_class)
+        if(webinarList.imageGalleries.isEmpty()){
+            holder.imgWebinar.setImageResource(R.drawable.image_icon)
         } else {
             holder.imgWebinar.load(IMAGE_URL + WEBINAR_IMAGES + "/" + webinarList.id + "/" + webinarList.imageGalleries[0].image) {
                 crossfade(600)
-                error(R.drawable.group_btn)
+                error(R.drawable.image_icon)
             }
         }
 

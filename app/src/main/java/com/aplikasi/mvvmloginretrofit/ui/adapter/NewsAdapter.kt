@@ -4,9 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.databinding.NewsTileLayoutBinding
 import com.aplikasi.mvvmloginretrofit.model.response.newsData.Data
 import com.aplikasi.mvvmloginretrofit.model.response.newsData.NewsDataResponse
+import com.aplikasi.mvvmloginretrofit.util.Constants
 import com.aplikasi.mvvmloginretrofit.util.DiffUtilsAdapter
 import java.text.DateFormat
 import java.text.ParseException
@@ -22,6 +25,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsTileViewHolder>() {
         val tgl = binding.tglNews
         val title = binding.titleNews
         val jam = binding.clockNews
+        val imgNews = binding.newsImg
 
         companion object {
             fun from(parent: ViewGroup): NewsTileViewHolder {
@@ -38,10 +42,18 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsTileViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NewsTileViewHolder, position: Int) {
-        val news = newsList[position]
-        holder.jam.text = getparsedDateToTime(news.createdAt!!)
-        holder.tgl.text = getparsedDate(news.createdAt)
-        holder.title.text = news.nameNews
+        val newsList = newsList[position]
+        holder.jam.text = getparsedDateToTime(newsList.createdAt!!)
+        holder.tgl.text = getparsedDate(newsList.createdAt)
+        holder.title.text = newsList.nameNews
+        if(newsList.imageGalleries.isEmpty()){
+            holder.imgNews.setImageResource(R.drawable.image_icon)
+        } else {
+            holder.imgNews.load(Constants.IMAGE_URL + Constants.NEWS_IMAGES + newsList.id + "/" + newsList.imageGalleries[0].image) {
+                crossfade(600)
+                error(R.drawable.image_icon)
+            }
+        }
     }
 
     @Throws(Exception::class)

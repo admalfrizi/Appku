@@ -1,8 +1,9 @@
 package com.aplikasi.mvvmloginretrofit.model.response.newsData
 
-
 import com.google.gson.annotations.SerializedName
 data class Data(
+    @SerializedName("image_galleries")
+    val imageGalleries: List<ImageGalleries>,
     @SerializedName("created_at")
     val createdAt: String?,
     @SerializedName("descNews")

@@ -16,4 +16,5 @@ object Constants {
 
     const val WEBINAR_IMAGES = "webinarImages"
     const val KELAS_IMAGES = "kelasImages/"
+    const val NEWS_IMAGES = "newsImages/"
 }

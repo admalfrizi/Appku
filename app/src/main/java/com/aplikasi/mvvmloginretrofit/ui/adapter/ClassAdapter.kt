@@ -1,6 +1,5 @@
 package com.aplikasi.mvvmloginretrofit.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -47,16 +46,14 @@ class ClassAdapter : RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
         holder.stage.text = classHolder.stage
         holder.jmlhVideo.text = classHolder.jmlhVideo.toString()
 
-        if(classHolder.imageGalleries[0].image.isNullOrEmpty()){
-            holder.imgClass.setImageResource(R.drawable.your_class)
+        if(classHolder.imageGalleries.isEmpty()){
+            holder.imgClass.setImageResource(R.drawable.image_icon)
         } else {
             holder.imgClass.load(IMAGE_URL + KELAS_IMAGES + classHolder.id + "/" + classHolder.imageGalleries[0].image) {
                 crossfade(600)
-                error(R.drawable.group_btn)
+                error(R.drawable.image_icon)
             }
         }
-
-        Log.d("RecyclerView", IMAGE_URL + KELAS_IMAGES + classHolder.id + "/" + classHolder.imageGalleries[0].image)
     }
 
     fun setData(items: KelasDataResponse){
