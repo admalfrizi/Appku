@@ -83,4 +83,21 @@ class DataRepository @Inject constructor(private val coreDataSource: CoreDataSou
     }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(
         Dispatchers.IO
     )
+
+    fun getOneWebinarData(id: Int) = flow {
+        emit(NetworkResult.loading(null))
+        coreDataSource.getOneWebinarData(id).let {
+            if (it.isSuccessful){
+                val oneWebinarData = it.body()
+
+                emit(NetworkResult.success(oneWebinarData))
+                Log.d("TAG", "Berhasil : $oneWebinarData")
+
+            } else  {
+                emit(NetworkResult.error(it.message(), null))
+            }
+        }
+    }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(
+        Dispatchers.IO
+    )
 }

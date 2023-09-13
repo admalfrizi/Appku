@@ -171,7 +171,7 @@
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:layout_marginVertical="5dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/enter_login"
+        android:background="@drawable/btn_execute"
         android:fontFamily="@font/inter_semibold"
         android:text="@string/registrasikan"
         android:textAllCaps="false"

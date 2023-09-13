@@ -1,4 +1,4 @@
-package com.aplikasi.mvvmloginretrofit.model.response.webinarsData
+package com.aplikasi.mvvmloginretrofit.model.response.webinarsData.allData
 
 import com.google.gson.annotations.SerializedName
 

@@ -28,7 +28,7 @@ class HomeScreen : Fragment() {
     private var _binding : ActivityHomeBinding? = null
     private val binding get() = _binding!!
     private val webinarAdapter by lazy {
-        TileAdapter()
+        TileAdapter(requireContext())
     }
     private val newsAdapter by lazy {
         NewsAdapter()
@@ -153,9 +153,7 @@ class HomeScreen : Fragment() {
             when(it.state) {
                 State.SUCCESS -> {
                     val data = it.data
-
                     newsAdapter.setData(data!!)
-
                     loadingNewsStop()
                 }
                 State.ERROR -> {

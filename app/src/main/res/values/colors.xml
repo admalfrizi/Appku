@@ -37,4 +37,6 @@
     <color name="chipTextColor">@color/black</color>
 
     <color name="placeHolderColor">@color/mediumGray</color>
+    <color name="detailsScreenBgColor">#E9FEFF</color>
+
 </resources>

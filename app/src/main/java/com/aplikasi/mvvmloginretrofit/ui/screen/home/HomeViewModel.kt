@@ -17,4 +17,6 @@ class HomeViewModel @Inject constructor(
     fun kategoriKelas() = repo.getKategoriKelasList().asLiveData()
 
     fun kelasWithCategory(category: Int) = repo.getKelasWithCategoryList(category).asLiveData()
+
+    fun oneWebinar(id: Int) = repo.getOneWebinarData(id).asLiveData()
 }

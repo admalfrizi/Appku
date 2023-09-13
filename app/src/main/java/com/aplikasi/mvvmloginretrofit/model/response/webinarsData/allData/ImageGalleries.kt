@@ -1,7 +1,10 @@
-package com.aplikasi.mvvmloginretrofit.model.response.webinarsData
+package com.aplikasi.mvvmloginretrofit.model.response.webinarsData.allData
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ImageGalleries(
     @SerializedName("id")
     val id: Int?,
@@ -13,4 +16,4 @@ data class ImageGalleries(
     val createdAt: String?,
     @SerializedName("updated_at")
     val updatedAt: String?
-)
+) : Parcelable

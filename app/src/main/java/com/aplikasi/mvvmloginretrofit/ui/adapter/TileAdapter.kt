@@ -1,5 +1,7 @@
 package com.aplikasi.mvvmloginretrofit.ui.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.databinding.TileLayoutBinding
-import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.Data
-import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.WebinarDataResponse
+import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.allData.Data
+import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.allData.WebinarDataResponse
+import com.aplikasi.mvvmloginretrofit.ui.details.WebinarDetailScreen
 import com.aplikasi.mvvmloginretrofit.util.Constants.IMAGE_URL
 import com.aplikasi.mvvmloginretrofit.util.Constants.WEBINAR_IMAGES
 import com.aplikasi.mvvmloginretrofit.util.DiffUtilsAdapter
@@ -22,7 +25,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
+class TileAdapter(val context: Context) : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
 
     private var webinarList = emptyList<Data>()
     class TileViewHolder(binding: TileLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -31,6 +34,7 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
         val jam = binding.clockWebinar
         val imgWebinar = binding.webinarImg
         val freeOrBuy = binding.freeOrBuy
+        val toDetails = binding.root
 
         companion object {
             fun from(parent: ViewGroup): TileViewHolder {
@@ -49,9 +53,11 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TileViewHolder, position: Int) {
         val webinarList = webinarList[position]
+        val parseClock = getparsedDateToTime(webinarList.created_at!!)
+        val parseDate = getparsedDate(webinarList.created_at)
 
-        holder.jam.text = getparsedDateToTime(webinarList.created_at!!)
-        holder.tgl.text = getparsedDate(webinarList.created_at)
+        holder.jam.text = parseClock
+        holder.tgl.text = parseDate
         holder.title.text = webinarList.titleWebinar
         holder.freeOrBuy.text = webinarList.freeOrBuy
         if(webinarList.imageGalleries.isEmpty()){
@@ -61,6 +67,17 @@ class TileAdapter : RecyclerView.Adapter<TileAdapter.TileViewHolder>() {
                 crossfade(600)
                 error(R.drawable.image_icon)
             }
+        }
+
+        holder.toDetails.setOnClickListener {
+            val intent = Intent(context, WebinarDetailScreen::class.java)
+            intent.putExtra("id", webinarList.id)
+            intent.putExtra( "name",webinarList.titleWebinar)
+            intent.putExtra( "freeOrBuy",webinarList.freeOrBuy)
+            intent.putExtra("jam", parseClock)
+            intent.putExtra("tgl", parseDate)
+
+            context.startActivity(intent)
         }
 
         Log.d("RecyclerViewWebinars", IMAGE_URL + WEBINAR_IMAGES + "/" + webinarList.id + "/" + webinarList.imageGalleries[0].image)

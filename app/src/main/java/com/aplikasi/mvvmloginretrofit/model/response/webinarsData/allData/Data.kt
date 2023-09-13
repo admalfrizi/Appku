@@ -1,4 +1,4 @@
-package com.aplikasi.mvvmloginretrofit.model.response.webinarsData
+package com.aplikasi.mvvmloginretrofit.model.response.webinarsData.allData
 
 import com.google.gson.annotations.SerializedName
 data class Data(
@@ -11,7 +11,7 @@ data class Data(
     @SerializedName("freeOrBuy")
     val freeOrBuy: String?,
     @SerializedName("id")
-    val id: Int?,
+    val id: Int,
     @SerializedName("titleWebinar")
     val titleWebinar: String?,
     @SerializedName("updated_at")

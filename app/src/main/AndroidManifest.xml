@@ -17,16 +17,21 @@
         android:theme="@style/Theme.MVVMLoginRetrofit"
         tools:targetApi="31">
         <activity
-            android:name=".ui.screen.profile.menu.ChangeDataProfileScreen"
-            android:label="Update Data"
+            android:name=".ui.details.WebinarDetailScreen"
+            android:theme="@style/DetailsActivityStyle"
+            android:label="Details Webinar"
             android:exported="false" />
+        <activity
+            android:name=".ui.screen.profile.menu.ChangeDataProfileScreen"
+            android:exported="false"
+            android:label="Update Data" />
         <activity
             android:name=".ui.updatedata.UpdateData"
             android:exported="false" />
         <activity
             android:name=".ui.navbottom.BottomNav"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
