@@ -100,4 +100,21 @@ class DataRepository @Inject constructor(private val coreDataSource: CoreDataSou
     }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(
         Dispatchers.IO
     )
+
+    fun getOneKelasData(id: Int) = flow {
+        emit(NetworkResult.loading(null))
+        coreDataSource.getOneKelasData(id).let {
+            if (it.isSuccessful){
+                val oneKelasData = it.body()
+
+                emit(NetworkResult.success(oneKelasData))
+                Log.d("TAG", "Berhasil : $oneKelasData")
+
+            } else  {
+                emit(NetworkResult.error(it.message(), null))
+            }
+        }
+    }.catch { e -> emit(NetworkResult.error(e.message ?: "Terjadi Kesalahan", null)) }.flowOn(
+        Dispatchers.IO
+    )
 }

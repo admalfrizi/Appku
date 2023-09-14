@@ -1,7 +1,8 @@
 package com.aplikasi.mvvmloginretrofit.api.apiRoutes
 
 import com.aplikasi.mvvmloginretrofit.model.response.kategoriKelasData.KategoriKelasDataResponse
-import com.aplikasi.mvvmloginretrofit.model.response.kelasData.KelasDataResponse
+import com.aplikasi.mvvmloginretrofit.model.response.kelasData.allData.KelasDataResponse
+import com.aplikasi.mvvmloginretrofit.model.response.kelasData.oneData.OneKelasDataResponse
 import com.aplikasi.mvvmloginretrofit.model.response.newsData.NewsDataResponse
 import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.allData.WebinarDataResponse
 import com.aplikasi.mvvmloginretrofit.model.response.webinarsData.oneData.OneWebinarDataResponse
@@ -29,4 +30,9 @@ interface CoreApi {
     suspend fun oneWebinarData(
         @Query("id") id: Int
     ): Response<OneWebinarDataResponse>
+
+    @POST(Constants.KELAS_DATA_LIST)
+    suspend fun oneKelasData(
+        @Query("id") id: Int
+    ): Response<OneKelasDataResponse>
 }

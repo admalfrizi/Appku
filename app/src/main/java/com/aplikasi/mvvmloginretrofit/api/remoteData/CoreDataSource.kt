@@ -14,4 +14,6 @@ class CoreDataSource @Inject constructor(private val api : CoreApi){
     suspend fun getKelasWithCategory(category : Int) = api.kelasData(category)
 
     suspend fun getOneWebinarData(id: Int) = api.oneWebinarData(id)
+
+    suspend fun getOneKelasData(id: Int) = api.oneKelasData(id)
 }

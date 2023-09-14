@@ -17,10 +17,15 @@
         android:theme="@style/Theme.MVVMLoginRetrofit"
         tools:targetApi="31">
         <activity
-            android:name=".ui.details.WebinarDetailScreen"
+            android:name=".ui.details.KelasDetailsScreen"
+            android:label="Detail Kelas"
             android:theme="@style/DetailsActivityStyle"
-            android:label="Details Webinar"
             android:exported="false" />
+        <activity
+            android:name=".ui.details.WebinarDetailScreen"
+            android:exported="false"
+            android:label="Detail Webinar"
+            android:theme="@style/DetailsActivityStyle" />
         <activity
             android:name=".ui.screen.profile.menu.ChangeDataProfileScreen"
             android:exported="false"

@@ -1,4 +1,4 @@
-package com.aplikasi.mvvmloginretrofit.model.response.kelasData
+package com.aplikasi.mvvmloginretrofit.model.response.kelasData.allData
 
 import com.google.gson.annotations.SerializedName
 

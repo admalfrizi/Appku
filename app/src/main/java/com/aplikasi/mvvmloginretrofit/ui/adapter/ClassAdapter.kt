@@ -1,5 +1,7 @@
 package com.aplikasi.mvvmloginretrofit.ui.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aplikasi.mvvmloginretrofit.R
 import com.aplikasi.mvvmloginretrofit.databinding.ClassLayoutBinding
-import com.aplikasi.mvvmloginretrofit.model.response.kelasData.Data
-import com.aplikasi.mvvmloginretrofit.model.response.kelasData.KelasDataResponse
+import com.aplikasi.mvvmloginretrofit.model.response.kelasData.allData.Data
+import com.aplikasi.mvvmloginretrofit.model.response.kelasData.allData.KelasDataResponse
+import com.aplikasi.mvvmloginretrofit.ui.details.KelasDetailsScreen
 import com.aplikasi.mvvmloginretrofit.util.Constants.IMAGE_URL
 import com.aplikasi.mvvmloginretrofit.util.Constants.KELAS_IMAGES
 import com.aplikasi.mvvmloginretrofit.util.DiffUtilsAdapter
 
-class ClassAdapter : RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
+class ClassAdapter(val context: Context) : RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
     private var kelasList = emptyList<Data>()
     class ClassViewHolder(binding: ClassLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -21,6 +24,7 @@ class ClassAdapter : RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
         val stage = binding.stageTitle
         val jmlhVideo = binding.jmlhVideo
         val imgClass = binding.classImg
+        val toDetails = binding.root
 
         companion object {
             fun from(parent: ViewGroup): ClassViewHolder {
@@ -53,6 +57,15 @@ class ClassAdapter : RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
                 crossfade(600)
                 error(R.drawable.image_icon)
             }
+        }
+
+        holder.toDetails.setOnClickListener {
+            val intent = Intent(context, KelasDetailsScreen::class.java)
+            intent.putExtra("id", classHolder.id)
+            intent.putExtra( "titleKelas",classHolder.titleKelas)
+            intent.putExtra( "stage",classHolder.stage)
+
+            context.startActivity(intent)
         }
     }
 

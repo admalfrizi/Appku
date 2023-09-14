@@ -34,7 +34,7 @@ class HomeScreen : Fragment() {
         NewsAdapter()
     }
     private val kelasAdapter by lazy {
-        ClassAdapter()
+        ClassAdapter(requireContext())
     }
 
     private var categoryTitle = "Semua Kategori"
